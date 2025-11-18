@@ -1,0 +1,157 @@
+🎧 1. Duration (duration_s)
+
+What it is: Total playing time of the audio in seconds.
+
+How it’s measured: Simply the number of samples divided by the sampling rate.
+
+Why it matters: Useful as a global descriptor — songs or samples may cluster by length (e.g., short percussive clips vs. full tracks). If you later normalize by duration, it can also help filter anomalies (e.g., accidentally short/empty files).
+
+💓 2. RMS Energy (rms_mean, rms_std, rms_min, rms_max)
+
+What it is: Root-Mean-Square energy — basically the “loudness” of the signal over time.
+
+How it works: The signal is split into small frames (like tiny time windows), and for each, we take the square root of the average squared amplitude.
+
+Why it’s useful:
+
+High RMS → loud sections.
+
+Variation in RMS (std) → dynamic range (how much the loudness changes).
+
+Genres or instruments differ in RMS patterns (e.g., classical music has wide dynamics, EDM is compressed and loud throughout).
+→ Can help cluster by “energy profile” or “mixing style”.
+
+⚡ 3. Zero-Crossing Rate (zcr_*)
+
+What it is: How often the waveform crosses zero amplitude (i.e., changes sign).
+
+How it works: Counts zero crossings per frame.
+
+Why it’s useful:
+
+High ZCR → noisy, sharp, or high-frequency sound (like hi-hats or “s” sounds).
+
+Low ZCR → smooth, tonal sound (like cello or vowels).
+→ Useful to distinguish percussive/noisy vs. harmonic/tonal sounds.
+
+🎚️ 4. Spectral Centroid (spec_centroid_hz_*)
+
+What it is: The “center of mass” of the frequency spectrum.
+
+How it works: Weighted average of frequencies, where weights are spectral magnitudes.
+
+Why it’s useful:
+
+High centroid → bright, sharp sounds (lots of treble).
+
+Low centroid → dark, bassy sounds.
+→ Useful for timbre — distinguishes bright instruments (cymbals, trumpets) from dark ones (bass, cello).
+
+🌈 5. Spectral Bandwidth (spec_bandwidth_hz_*)
+
+What it is: How wide the spectrum is around its centroid (the spread of frequencies).
+
+How it works: Measures the standard deviation of the frequency distribution.
+
+Why it’s useful:
+
+Large bandwidth → complex or noisy signals (rich spectrum).
+
+Small bandwidth → pure tones or steady pitches.
+→ Useful for detecting texture: clean tones vs. distorted/noisy timbres.
+
+🪶 6. Spectral Rolloff (spec_rolloff_hz_*)
+
+What it is: The frequency below which a given percentage (e.g. 85%) of total spectral energy is contained.
+
+How it works: Sorts frequencies by energy and finds the threshold where 85% is below.
+
+Why it’s useful:
+
+High rolloff → much energy in high frequencies (bright, percussive).
+
+Low rolloff → low-frequency energy dominates (mellow, bass-heavy).
+→ Another “brightness” indicator; helps confirm centroid features.
+
+🧩 7. Spectral Contrast (spectral_contrast_b*_mean/std)
+
+What it is: Difference between peaks and valleys of the spectrum in several frequency sub-bands.
+
+How it works: Divides the spectrum into frequency bands and compares high vs. low energy within each.
+
+Why it’s useful:
+
+High contrast → tonal (clear peaks at harmonic frequencies).
+
+Low contrast → noisy or dense (flat spectrum).
+→ Helps separate harmonic instruments from percussive/noisy ones.
+
+🧮 8. MFCCs (mfcc1..13_mean/std)
+
+What it is: Mel-Frequency Cepstral Coefficients — a compact summary of the spectral shape.
+
+How it works: The spectrum is converted to a “mel” scale (roughly how humans hear), then log-transformed and decorrelated.
+
+Why it’s useful:
+
+These are the most common timbre features used in speech and music classification.
+
+MFCCs 1–3 describe overall brightness and spectral slope; higher ones describe finer timbre variations.
+→ In clustering, MFCCs can group songs with similar “sound color” — e.g., acoustic vs. electronic textures.
+
+🎼 9. Chroma Features (chroma_0..11_mean/std)
+
+What it is: Measures how energy is distributed across the 12 pitch classes (C, C#, D, … B), regardless of octave.
+
+How it works: Projects spectral energy onto a circular “pitch class” representation.
+
+Why it’s useful:
+
+Captures harmonic content — chords, keys, melodies.
+
+Two songs in the same key or with similar harmonic progression will have similar chroma profiles.
+→ Useful for tonal or harmonic similarity (e.g., clustering by musical key or chord patterns).
+
+🔊 10. Tempo (tempo_bpm)
+
+What it is: Estimated beats per minute.
+
+How it works: Detects periodic patterns in the onset energy (i.e., repeating pulses).
+
+Why it’s useful:
+
+Helps identify rhythmic style (fast vs. slow music).
+
+In clustering, it can separate e.g. dance tracks (120–130 BPM) from ballads (~70 BPM).
+→ Great high-level feature for rhythm-based grouping.
+
+🧱 11. Band Energy Ratios (band_low_*, band_mid_*, band_high_*)
+
+What it is: Average energy in broad frequency ranges (bass, mids, treble).
+
+How it works: The signal is passed through mel filters and summed within frequency ranges:
+
+low: 20–150 Hz
+
+low-mid: 150–600 Hz
+
+mid: 600–2000 Hz
+
+high-mid: 2k–6k Hz
+
+high: 6k–11k Hz
+
+Why it’s useful:
+
+Gives an “equalizer profile” — how the sound’s energy is distributed.
+
+High low-band energy → bass-heavy.
+
+High high-band energy → bright, sharp.
+→ Great for grouping by overall tonal balance or production style.
+
+⚙️ 12. Sampling Rate (sr) & Status
+
+sr: Sampling rate (samples per second). Good to confirm all files are standardized.
+
+status: Whether processing succeeded (so you can filter out errors or empty files).

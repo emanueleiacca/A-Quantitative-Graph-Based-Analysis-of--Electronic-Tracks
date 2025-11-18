@@ -1,0 +1,39 @@
+🎧 Metadata di base
+Feature	Descrizione
+file	Nome del file o path della traccia.
+status	Stato di elaborazione (es. OK / errore).
+sr	Sampling rate (Hz) – frequenza di campionamento del segnale.
+duration_s	Durata del file audio (in secondi).
+tempo_bpm	Tempo medio stimato in battiti per minuto (beat per minute).
+🔊 Energia e dinamica
+Feature	Descrizione
+rms_mean, rms_std, rms_min, rms_max	Root Mean Square energy – misura l’energia media del segnale (volume percepito). Utili per distinguere brani dinamici vs compressi.
+⚡ Zero Crossing Rate (ZCR)
+Feature	Descrizione
+zcr_mean, zcr_std, zcr_min, zcr_max	Frequenza media con cui il segnale attraversa lo zero. Valori alti → segnali rumorosi o con alta frequenza; bassi → toni più puri.
+🎚️ Spectral Features
+Feature	Descrizione
+spec_centroid_hz_*	Centroide spettrale – percezione di “brillantezza” o “asprezza” del suono.
+spec_bandwidth_hz_*	Larghezza di banda spettrale – quanto è disperso lo spettro intorno al centroide.
+spec_rolloff_hz_*	Spectral roll-off – frequenza sotto la quale si trova una percentuale fissa (es. 85%) dell’energia totale. Misura la brillantezza.
+🎛️ Spectral Contrast
+Feature	Descrizione
+spectral_contrast_b0_mean … spectral_contrast_b6_*	Differenza tra picchi e valli di energia in diverse bande di frequenza. Cattura la struttura armonica: brani ricchi di armoniche (archi, chitarre) → contrasti elevati; rumori o bassi → bassi contrasti.
+🎼 MFCC (Mel-Frequency Cepstral Coefficients)
+Feature	Descrizione
+mfcc1_mean … mfcc13_*	Coefficienti cepstrali derivati dalla scala Mel. Sono descrittori compatti del timbro.
+– mfcc1 ≈ energia complessiva
+– mfcc2–5 ≈ pendenza e forma spettrale
+– mfcc6–13 ≈ dettagli fini (nasalità, “colorazione” del suono).
+Ogni *_mean, *_std cattura rispettivamente valore medio e variabilità nel tempo.	
+🎵 Chroma (Pitch Class Energy)
+Feature	Descrizione
+chroma_0_mean … chroma_11_*	Energia distribuita tra le 12 classi di pitch (Do, Do#, Re, … Si). Invariante rispetto all’ottava, quindi utile per armonia e tonalità.
+Possono mostrare pattern tonali (es. toni dominanti, accordi prevalenti).	
+📈 Bande di frequenza (Mel sub-bands energy)
+Feature	Descrizione
+band_low_20_150_mel_db_mean	Energia bassa (bassi, kick drum).
+band_lowmid_150_600_mel_db_mean	Low-mid (voce maschile, chitarre basse).
+band_mid_600_2000_mel_db_mean	Midrange (voce, strumenti principali).
+band_highmid_2k_6k_mel_db_mean	High-mid (presenza, attacco strumenti).
+band_high_6k_11k_mel_db_mean	Alte frequenze (brillantezza, sibilanti).

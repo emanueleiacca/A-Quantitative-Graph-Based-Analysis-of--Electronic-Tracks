@@ -1,0 +1,20 @@
+Niccolo di marco
+valutare analisi my features vs midi
+state of art del paper mostrato
+
+Lucio Arese
+visualizzazione figa
+presentazione 20/11/25 ore 12 pm  
+
+check midi vs chroma if it actually works so our methodology makes sense
+show why midi can't be used in most of the case, to open to our use case
+
+
+500 tekno song by genre
+download wav
+extract features
+double check that everything makes sense and so on
+features vector 
+application and check of the clutsering as status
+generate graph
+apply the graphs tecniques mentioned and whatever quantitative anlysis might be needed

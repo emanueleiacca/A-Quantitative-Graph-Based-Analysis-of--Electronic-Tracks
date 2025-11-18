@@ -1,0 +1,28 @@
+Limitazioni dell'utilizzo dei file MIDI:
+Esempi di quali casi vengono limitati dal MIDI
+📌 Limiti del MIDI nella ricerca musicale (spiegato facile e corto)
+
+Non contiene il suono vero
+→ niente voce, niente distorsioni, niente effetti.
+Esempio: una canzone techno diventa solo “tut-tut-tut” senza i suoni reali.
+
+Rappresenta solo note e tempi
+→ tutto ciò che fa “suonare bene” una musica sparisce.
+Esempio: Beyoncé in MIDI diventa un flauto che fa la melodia.
+
+Perde l’espressività umana
+→ niente vibrazioni, niente sfumature, niente ritmo naturale.
+Esempio: un violino emozionante diventa una nota piatta.
+
+La conversione da audio a MIDI è piena di errori
+→ note sbagliate, strumenti mischiati, ritmi storti.
+Esempio: una batteria registrata diventa un caos di colpi casuali.
+
+Ogni file MIDI è diverso e incoerente
+→ difficile confrontare i dati.
+Esempio: due MIDI della stessa canzone possono non assomigliarsi per niente.
+
+sfidare midi nel proprio best scenario: Fur elise di Beethoven
+
+
+
